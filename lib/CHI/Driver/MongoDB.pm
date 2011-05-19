@@ -34,11 +34,6 @@ sub BUILD {
     return;
 }
 
-sub _collection {
-    my ($self) = @_;
-    return $self->db->get_collection( $self->namespace() );
-}
-
 sub fetch {
     my ( $self, $key ) = @_;
     $key =
