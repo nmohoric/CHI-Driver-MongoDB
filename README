@@ -1,0 +1,32 @@
+NAME
+    CHI::Driver::MongoDB - Use MongoDB for cache storage
+
+VERSION
+    version 0.01 
+
+SYNOPSIS
+    use CHI;
+    
+    # Supply a MongoDB database handle
+    #
+    my $cache = CHI->new( driver => 'MongoDB', 
+                          db => MongoDB::Connection->new->get_database('db_name') );
+    
+    # Or supply a MongoDB Connection handla and database name
+    #
+    my $cache = CHI->new( driver => 'MongoDB', 
+                          conn => MongoDB::Connection->new, 
+                          db_name => 'db_name' );
+
+DESCRIPTION
+    This driver uses a MongoDB table to store the cache.
+
+AUTHORS
+    Nick Mohoric <nick.mohoric@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Nick Mohoric.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
