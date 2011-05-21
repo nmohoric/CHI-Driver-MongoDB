@@ -15,7 +15,6 @@ has 'db'         => ( is => 'ro', isa => 'MongoDB::Database' );
 has 'collection' => ( is => 'ro', isa => 'MongoDB::Collection' );
 has 'db_name'    => ( is => 'ro', isa => 'Str', default => 'chi' );
 has 'safe'       => ( is => 'rw', isa => 'Bool', default => 0 );
-has 'use_oid'    => ( is => 'rw', isa => 'Bool', default => 0 );
 
 __PACKAGE__->meta->make_immutable();
 
@@ -36,10 +35,6 @@ sub BUILD {
 
 sub fetch {
     my ( $self, $key ) = @_;
-    $key =
-      ( $self->{use_oid} )
-      ? MongoDB::OID->new( value => unpack( "H*", $key ) )
-      : $key;
 
     my $results = $self->collection->find_one( { _id => $key }, { data => 1 } );
     return ($results) ? $results->{data} : undef;
@@ -47,10 +42,6 @@ sub fetch {
 
 sub store {
     my ( $self, $key, $data ) = @_;
-    $key =
-      ( $self->{use_oid} )
-      ? MongoDB::OID->new( value => unpack( "H*", $key ) )
-      : $key;
 
     $self->collection->save( { _id => $key, data => $data },
         { safe => $self->{safe} } );
@@ -59,10 +50,6 @@ sub store {
 
 sub remove {
     my ( $self, $key ) = @_;
-    $key =
-      ( $self->{use_oid} )
-      ? MongoDB::OID->new( value => unpack( "H*", $key ) )
-      : $key;
 
     $self->collection->remove( { _id => $key }, { safe => $self->{safe} } );
     return;
@@ -74,9 +61,7 @@ sub clear {
 }
 
 sub get_keys {
-    return ( !shift->{use_oid} )
-      ? map { $_->{_id} } shift->collection->find( {}, { _id => 1 } )->all
-      : croak 'Cannot get keys when converting keys to OID';
+    map { $_->{_id} } shift->collection->find( {}, { _id => 1 } )->all;
 }
 
 sub get_namespaces {
@@ -140,10 +125,6 @@ Optional database name to use in conjunction with the conn
 =item safe
 
 Optional flag to confirm insertion/removal. This will slow down writes significantly.
-
-=item use_oid
-
-Optional flag to convert key to OID. This speeds up gets, slows retrieval, and removes the ability to get_keys.
 
 =back
 
