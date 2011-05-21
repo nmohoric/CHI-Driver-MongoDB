@@ -1,0 +1,25 @@
+---
+abstract: 'Use MongoDB for cache storage'
+author:
+  - 'Nick Mohoric <nick.mohoricc@gmail.com>'
+build_requires:
+  Test::Class: 0
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.31
+dynamic_config: 0
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: CHI-Driver-MongoDB
+no_index:
+  directory:
+    - lib/CHI/Driver/MongoDB/t
+requires:
+  CHI: 0.241
+  MongoDB: 0.42 
+resources:
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=CHI-Driver-MongoDB
+  repository: git://github.com/AddingMachine/Chi-Driver-MongoDB.git 
+version: 0.01 

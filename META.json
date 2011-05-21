@@ -1,0 +1,53 @@
+{
+   "abstract" : "Use MongoDB for cache storage",
+   "author" : [
+      "Nick Mohoric <nick.mohoric@gmail.com>"
+   ],
+   "dynamic_config" : 0,
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "CHI-Driver-MongoDB",
+   "no_index" : {
+      "directory" : [
+         "lib/CHI/Driver/MongoDB/t",
+      ],
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.31"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "CHI" : "0.241",
+            "MongoDB" : "0.42"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::Class" : 0,
+            "Test::More" : 0
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "mailto" : "bug-chi-driver-mongodb@rt.cpan.org",
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=CHI-Driver-MongoDB"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/AddingMachine/Chi-Driver-MongoDB.git",
+         "web" : "https://github.com/AddingMachine/Chi-Driver-MongoDB"
+      }
+   },
+   "version" : "0.01"
+}
+

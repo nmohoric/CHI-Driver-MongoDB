@@ -1,11 +1,12 @@
 Changes
 INSTALL
 LICENSE
-lib/CHI/Driver/MongoDB.pm
+MANIFEST
+META.json
+META.yml
 Makefile.PL
-MANIFEST			This list of files
+lib/CHI/Driver/MongoDB.pm
+lib/CHI/Driver/MongoDB/t/CHIDriverTests/MongoDB.pm
 README
 t/00-load.t
-t/manifest.t
-t/pod-coverage.t
-t/pod.t
+t/CHIDriverTests-MongoDB.t

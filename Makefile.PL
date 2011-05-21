@@ -11,12 +11,17 @@ WriteMakefile(
       ? ('LICENSE'=> 'perl')
       : ()),
     PL_FILES            => {},
+    BUILD_REQUIRES => {
+        'Test::Class' => '0',
+        'Test::More' => '0'
+    },
+    CONFIGURE_REQUIRES => {
+        'ExtUtils::MakeMaker' => '6.31'
+    },
+    LICENSE => 'perl',
     PREREQ_PM => {
-        'Test::More' => 0,
 	'CHI'	     => '0.241',
 	'MongoDB'    => '0.42',
     },
-    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'CHI-Driver-MongoDB-*' },
     test 		=> { TESTS => 't/*.t' },
 );
