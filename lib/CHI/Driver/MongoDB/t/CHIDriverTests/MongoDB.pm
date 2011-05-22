@@ -26,11 +26,20 @@ sub db {
     };
 }
 
+sub new_cache_options {
+    my $self = shift;
+
+    return (
+        $self->SUPER::new_cache_options(),
+        db          => $self->db,
+    );
+}
+
 sub test_with_database : Tests(1) {
     return "MongoDB::Database not installed"
       unless can_load( modules => { "MongoDB::Database" => undef } );
 
-    my $self = shift;
+    my $self  = shift;
     my $cache = CHI->new(
         driver => "MongoDB",
         db     => $self->db
@@ -45,7 +54,7 @@ sub test_with_connection : Tests(1) {
     return "MongoDB::Connection not installed"
       unless can_load( modules => { "MongoDB::Connection" => undef } );
 
-    my $self = shift;
+    my $self  = shift;
     my $cache = CHI->new(
         driver  => "MongoDB",
         conn    => MongoDB::Connection->new,
