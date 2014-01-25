@@ -36,14 +36,14 @@ sub BUILD {
 sub fetch {
     my ( $self, $key ) = @_;
 
-    my $results = $self->collection->find_one( { _id => $key }, { data => 1 } );
+    my $results = $self->collection->find_one( { _id => "$key" }, { data => 1 } );
     return ($results) ? $results->{data} : undef;
 }
 
 sub store {
     my ( $self, $key, $data ) = @_;
 
-    $self->collection->save( { _id => $key, data => $data },
+    $self->collection->save( { _id => "$key", data => $data },
         { safe => $self->{safe} } );
     return;
 }
@@ -51,7 +51,7 @@ sub store {
 sub remove {
     my ( $self, $key ) = @_;
 
-    $self->collection->remove( { _id => $key }, { safe => $self->{safe} } );
+    $self->collection->remove( { _id => "$key" }, { safe => $self->{safe} } );
     return;
 }
 
